@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base resets that work alongside Ant Design */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ant Design + Tailwind coexistence:
+   preflight is disabled in tailwind.config.js so Ant Design's
+   base styles are not blown away. We apply only what we need here. */
+#root {
+  min-height: 100vh;
+}
