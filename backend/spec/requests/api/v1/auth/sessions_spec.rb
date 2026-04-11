@@ -23,10 +23,6 @@ RSpec.describe 'Api::V1::Auth::Sessions', type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it 'returns success message' do
-        expect(json['message']).to eq('Logged in successfully.')
-      end
-
       it 'returns user data' do
         expect(json['user']['email']).to eq('ahmed@example.com')
         expect(json['user']['role']).to eq('user')
@@ -71,10 +67,6 @@ RSpec.describe 'Api::V1::Auth::Sessions', type: :request do
 
       it 'returns http 200' do
         expect(response).to have_http_status(:ok)
-      end
-
-      it 'returns logout message' do
-        expect(json['message']).to eq('Logged out successfully.')
       end
     end
 

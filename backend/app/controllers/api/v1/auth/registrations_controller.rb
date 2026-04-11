@@ -8,13 +8,12 @@ module Api
 
         private
 
-        def respond_with(user, _options = {})
+        def respond_with(user, _opts = {})
           if user.persisted?
             token = JwtTokenService.call(user)
             response.headers['Authorization'] = "Bearer #{token}"
 
             render_success({
-              message: 'Signed up successfully.',
               user: UserSerializer.new(user).call
             }, :created)
           else

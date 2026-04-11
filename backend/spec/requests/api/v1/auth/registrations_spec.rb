@@ -33,10 +33,6 @@ RSpec.describe 'Api::V1::Auth::Registrations', type: :request do
         expect(response).to have_http_status(:created)
       end
 
-      it 'returns success message' do
-        expect(json['message']).to eq('Signed up successfully.')
-      end
-
       it 'returns user data' do
         expect(json['user']['email']).to eq('ahmed@example.com')
         expect(json['user']['first_name']).to eq('Ahmed')
