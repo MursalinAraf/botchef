@@ -2,26 +2,23 @@ module Api
   module V1
     module Auth
       class RegistrationsController < Devise::RegistrationsController
-        respond_to :json
+        include Api::Renderable
 
         def sign_in(_user, *_args); end
 
         private
 
-        def respond_with(user, _opts = {})
+        def respond_with(user, _options = {})
           if user.persisted?
             token = JwtTokenService.call(user)
             response.headers['Authorization'] = "Bearer #{token}"
 
-            render json: {
+            render_success({
               message: 'Signed up successfully.',
               user: UserSerializer.new(user).call
-            }, status: :created
+            }, :created)
           else
-            render json: {
-              message: 'Signup failed.',
-              errors: user.errors.full_messages
-            }, status: :unprocessable_entity
+            render_errors(user.errors.full_messages)
           end
         end
 

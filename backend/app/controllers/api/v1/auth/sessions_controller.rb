@@ -2,37 +2,26 @@ module Api
   module V1
     module Auth
       class SessionsController < Devise::SessionsController
-        respond_to :json
+        include Api::Renderable
 
         private
 
-        def respond_with(resource, _opts = {})
-          render json: {
-            message: 'Logged in successfully.',
-            user: user_response(resource)
-          }, status: :ok
+        def respond_with(user, _opts = {})
+          if user.persisted?
+            render_success({
+            user: UserSerializer.new(user).call
+            })
+          else
+            render_error('Invalid email or password.', status: :unauthorized)
+          end
         end
 
         def respond_to_on_destroy(*_args)
           if request.headers['Authorization'].present?
-            render json: {
-              message: 'Logged out successfully.'
-            }, status: :ok
+            render_success({})
           else
-            render json: {
-              message: 'No active session found.'
-            }, status: :unauthorized
+            render_error('No active session found.', status: :unauthorized)
           end
-        end
-
-        def user_response(user)
-          {
-            id: user.id,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email,
-            role: user.role
-          }
         end
       end
     end
