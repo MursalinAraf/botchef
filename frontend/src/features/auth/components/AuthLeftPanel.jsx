@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 const AuthLeftPanel = ({ title, subtitle, features }) => {
+  const { t } = useTranslation();
+
   return (
     <div
       className="flex flex-col justify-between px-10 py-12"
@@ -39,10 +43,10 @@ const AuthLeftPanel = ({ title, subtitle, features }) => {
       </div>
 
       <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-        © 2026 BotChef
+        {t("common.copyright")}
       </p>
     </div>
   );
-}
+};
 
-export default AuthLeftPanel
+export default AuthLeftPanel;
