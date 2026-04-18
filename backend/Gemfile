@@ -9,6 +9,10 @@ gem 'rack-cors'
 gem 'dotenv-rails'
 gem 'bootsnap', require: false
 
+# Auth
+gem 'devise'
+gem 'devise-jwt'
+
 group :development, :test do
   gem 'rspec-rails', '~> 6.1'
   gem 'factory_bot_rails'
