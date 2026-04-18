@@ -1,4 +1,4 @@
-export default function AuthLeftPanel({ title, subtitle, features }) {
+const AuthLeftPanel = ({ title, subtitle, features }) => {
   return (
     <div
       className="flex flex-col justify-between px-10 py-12"
@@ -44,3 +44,5 @@ export default function AuthLeftPanel({ title, subtitle, features }) {
     </div>
   );
 }
+
+export default AuthLeftPanel

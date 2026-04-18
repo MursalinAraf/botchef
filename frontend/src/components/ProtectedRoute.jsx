@@ -3,10 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { selectIsAuthenticated } from "@/features/auth/authSlice";
 
 export default function ProtectedRoute() {
-  
-    
-    const isAuthenticated = useSelector(selectIsAuthenticated);
-    console.log(isAuthenticated);  
+  const isAuthenticated = useSelector(selectIsAuthenticated);  
     
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;

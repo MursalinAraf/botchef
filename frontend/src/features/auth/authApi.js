@@ -1,10 +1,11 @@
 import { baseApi } from "@/app/baseApi";
+import { API_ROUTES } from "../../app/apiRoutes";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     signup: builder.mutation({
       query: (credentials) => ({
-        url: "/auth/signup",
+        url: API_ROUTES.auth.signup,
         method: "POST",
         body: {
           user: credentials,
@@ -14,7 +15,7 @@ export const authApi = baseApi.injectEndpoints({
 
     login: builder.mutation({
       query: (credentials) => ({
-        url: "/auth/login",
+        url: API_ROUTES.auth.login,
         method: "POST",
         body: {
           user: credentials,

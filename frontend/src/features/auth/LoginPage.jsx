@@ -1,15 +1,15 @@
 import { Form, Field } from "react-final-form";
 import { Button, Alert } from "antd";
 import { useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
-import { store } from "app/store";
+import { Link } from "react-router-dom";
 import { useLoginMutation } from "./authApi";
 import { setCredentials } from "./authSlice";
 import AuthLeftPanel from "./components/AuthLeftPanel";
+import useAppNavigate from "../../hooks/useAppNavigate";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const {toDashboard} = useAppNavigate()
   const [login, { isLoading }] = useLoginMutation();
 
   const onSubmit = async (values) => {
@@ -21,10 +21,8 @@ export default function LoginPage() {
           user: result.user,
         }),
       );
-      console.log("Credentials set!");
-      // dispatch এর পরে
-      console.log("Store state:", store.getState());
-      navigate("/dashboard");
+      toDashboard()
+      
     } catch (err) {
       return { FORM_ERROR: err.data?.error || "Invalid email or password." };
     }
