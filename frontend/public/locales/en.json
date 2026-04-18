@@ -1,0 +1,60 @@
+{
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Enter your credentials to access your dashboard",
+      "email": "Email address",
+      "password": "Password",
+      "forgot_password": "Forgot password?",
+      "submit": "Sign in",
+      "no_account": "Don't have an account?",
+      "create_one": "Create one",
+      "invalid_credentials": "Invalid email or password."
+    },
+    "signup": {
+      "title": "Create your account",
+      "subtitle": "Get started with your free trial today",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email address",
+      "password": "Password",
+      "password_hint": "Minimum 6 characters",
+      "confirm_password": "Confirm password",
+      "passwords_not_match": "Passwords do not match",
+      "submit": "Create account",
+      "terms": "By signing up you agree to our",
+      "terms_link": "Terms of Service",
+      "privacy_link": "Privacy Policy",
+      "and": "and",
+      "have_account": "Already have an account?",
+      "sign_in": "Sign in",
+      "something_wrong": "Something went wrong. Please try again."
+    },
+    "left_panel": {
+      "login": {
+        "title": "Welcome back to BotChef",
+        "subtitle": "Manage your restaurant chatbots and delight your customers 24/7.",
+        "features": [
+          "AI-powered chatbot for your restaurant",
+          "Animated mascot unique to your brand",
+          "One line embed — live in 5 minutes"
+        ]
+      },
+      "signup": {
+        "title": "Start your free 14-day trial",
+        "subtitle": "No credit card needed. Get your chatbot live in minutes.",
+        "features": [
+          "Setup in under 5 minutes",
+          "No technical knowledge needed",
+          "Cancel anytime"
+        ]
+      }
+    },
+    "validation": {
+      "required": "Required"
+    }
+  },
+  "common": {
+    "copyright": "© 2026 BotChef"
+  }
+}
