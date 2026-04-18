@@ -8,7 +8,9 @@ module Api
 
         def respond_with(user, _opts = {})
           if user.persisted?
+            token = request.env['warden-jwt_auth.token']
             render_success({
+            token: token,
             user: UserSerializer.new(user).call
             })
           else

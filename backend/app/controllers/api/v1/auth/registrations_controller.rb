@@ -14,6 +14,7 @@ module Api
             response.headers['Authorization'] = "Bearer #{token}"
 
             render_success({
+              token: token,
               user: UserSerializer.new(user).call
             }, :created)
           else
