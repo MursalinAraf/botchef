@@ -1,6 +1,8 @@
 module Api
   module V1
     class HealthController < Api::ApplicationController
+      skip_before_action :authenticate_user!
+
       def show
         render json: {
           status: 'ok',
