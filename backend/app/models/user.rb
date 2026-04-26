@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   enum :role, { user: 0, admin: 1 }
 
+  has_many :restaurants, dependent: :destroy
+
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :last_name,  presence: true, length: { maximum: 50 }
   validates :email,      presence: true, format: { with: VALID_EMAIL_REGEX }
