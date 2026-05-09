@@ -55,6 +55,78 @@
     }
   },
   "common": {
-    "copyright": "© 2026 BotChef"
+    "copyright": "© 2026 BotChef",
+    "cancel": "Cancel",
+    "error_generic": "Something went wrong"
+  },
+  "dashboard": {
+    "nav": {
+      "restaurants": "Restaurants",
+      "sign_out": "Sign out"
+    },
+    "header": {
+      "title": "Restaurants",
+      "subtitle": "Manage your restaurants and bot configurations",
+      "new_restaurant": "New Restaurant"
+    },
+    "metrics": {
+      "total": "Total Restaurants",
+      "configured": "Bots Configured",
+      "pending": "Pending Setup"
+    },
+    "list": {
+      "empty_title": "No restaurants yet",
+      "empty_subtitle": "Add your first restaurant to get started",
+      "add_button": "Add Restaurant"
+    },
+    "card": {
+      "bot_active": "Bot Active",
+      "no_bot": "No Bot",
+      "configure_bot": "Configure Bot",
+      "delete_title": "Delete restaurant?",
+      "delete_description": "This will also delete its bot configuration.",
+      "delete_confirm": "Delete"
+    },
+    "create_modal": {
+      "title_create": "New Restaurant",
+      "title_edit": "Edit Restaurant",
+      "name_label": "Restaurant Name",
+      "phone_label": "Phone Number",
+      "location_label": "Location",
+      "hours_label": "Opening Hours",
+      "submit_create": "Create Restaurant",
+      "submit_edit": "Save Changes"
+    },
+    "bot_config": {
+      "drawer_title": "Configure Bot — {{name}}",
+      "drawer_title_generic": "Configure Bot",
+      "menu_label": "Menu",
+      "menu_placeholder": "Paste your full menu here — items, descriptions, prices...",
+      "delivery_label": "Delivery Info",
+      "delivery_placeholder": "Delivery zones, fees, estimated times...",
+      "deals_label": "Deals & Promotions",
+      "deals_placeholder": "Current deals and promotions...",
+      "rules_label": "Bot Rules",
+      "rules_placeholder": "Instructions for the bot, topics to avoid...",
+      "tone_label": "Tone",
+      "mascot_label": "Mascot",
+      "color_label": "Brand Color",
+      "color_error": "Must be a valid hex color (e.g. #ff0000)",
+      "submit": "Save Configuration",
+      "tones": {
+        "friendly": "Friendly",
+        "formal": "Formal",
+        "fun": "Fun",
+        "concise": "Concise"
+      },
+      "mascots": {
+        "pizza": "🍕 Pizza",
+        "burger": "🍔 Burger",
+        "sushi": "🍣 Sushi",
+        "curry": "🍛 Curry",
+        "bakery": "🥐 Bakery",
+        "noodles": "🍜 Noodles"
+      }
+    }
   }
 }

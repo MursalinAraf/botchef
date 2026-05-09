@@ -55,6 +55,78 @@
     }
   },
   "common": {
-    "copyright": "© ২০২৬ BotChef"
+    "copyright": "© ২০২৬ BotChef",
+    "cancel": "বাতিল",
+    "error_generic": "কিছু একটা ভুল হয়েছে"
+  },
+  "dashboard": {
+    "nav": {
+      "restaurants": "রেস্টুরেন্ট",
+      "sign_out": "সাইন আউট"
+    },
+    "header": {
+      "title": "রেস্টুরেন্ট",
+      "subtitle": "আপনার রেস্টুরেন্ট এবং বট কনফিগারেশন পরিচালনা করুন",
+      "new_restaurant": "নতুন রেস্টুরেন্ট"
+    },
+    "metrics": {
+      "total": "মোট রেস্টুরেন্ট",
+      "configured": "বট কনফিগার করা হয়েছে",
+      "pending": "সেটআপ বাকি"
+    },
+    "list": {
+      "empty_title": "এখনো কোনো রেস্টুরেন্ট নেই",
+      "empty_subtitle": "শুরু করতে আপনার প্রথম রেস্টুরেন্ট যোগ করুন",
+      "add_button": "রেস্টুরেন্ট যোগ করুন"
+    },
+    "card": {
+      "bot_active": "বট সক্রিয়",
+      "no_bot": "বট নেই",
+      "configure_bot": "বট কনফিগার করুন",
+      "delete_title": "রেস্টুরেন্ট মুছবেন?",
+      "delete_description": "এটি বট কনফিগারেশনও মুছে দেবে।",
+      "delete_confirm": "মুছুন"
+    },
+    "create_modal": {
+      "title_create": "নতুন রেস্টুরেন্ট",
+      "title_edit": "রেস্টুরেন্ট সম্পাদনা করুন",
+      "name_label": "রেস্টুরেন্টের নাম",
+      "phone_label": "ফোন নম্বর",
+      "location_label": "অবস্থান",
+      "hours_label": "খোলার সময়",
+      "submit_create": "রেস্টুরেন্ট তৈরি করুন",
+      "submit_edit": "পরিবর্তন সংরক্ষণ করুন"
+    },
+    "bot_config": {
+      "drawer_title": "বট কনফিগার করুন — {{name}}",
+      "drawer_title_generic": "বট কনফিগার করুন",
+      "menu_label": "মেনু",
+      "menu_placeholder": "এখানে আপনার সম্পূর্ণ মেনু দিন — আইটেম, বিবরণ, দাম...",
+      "delivery_label": "ডেলিভারি তথ্য",
+      "delivery_placeholder": "ডেলিভারি এলাকা, চার্জ, আনুমানিক সময়...",
+      "deals_label": "ডিল ও অফার",
+      "deals_placeholder": "বর্তমান ডিল ও প্রমোশন...",
+      "rules_label": "বট নিয়মাবলী",
+      "rules_placeholder": "বটের জন্য নির্দেশনা, যেসব বিষয় এড়িয়ে চলতে হবে...",
+      "tone_label": "স্বর",
+      "mascot_label": "মাসকট",
+      "color_label": "ব্র্যান্ড রঙ",
+      "color_error": "একটি বৈধ হেক্স রঙ হতে হবে (যেমন: #ff0000)",
+      "submit": "কনফিগারেশন সংরক্ষণ করুন",
+      "tones": {
+        "friendly": "বন্ধুত্বপূর্ণ",
+        "formal": "আনুষ্ঠানিক",
+        "fun": "মজাদার",
+        "concise": "সংক্ষিপ্ত"
+      },
+      "mascots": {
+        "pizza": "🍕 পিৎজা",
+        "burger": "🍔 বার্গার",
+        "sushi": "🍣 সুশি",
+        "curry": "🍛 কারি",
+        "bakery": "🥐 বেকারি",
+        "noodles": "🍜 নুডলস"
+      }
+    }
   }
 }
