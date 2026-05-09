@@ -29,7 +29,7 @@ const AuthLeftPanel = ({ title, subtitle, features }) => {
           {subtitle}
         </p>
         <div className="flex flex-col gap-3 mt-2">
-          {features.map((feature) => (
+          {Array.isArray(features) && features.map((feature) => (
             <div
               key={feature}
               className="flex items-center gap-3 text-sm"

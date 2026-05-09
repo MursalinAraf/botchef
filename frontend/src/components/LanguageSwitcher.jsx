@@ -10,7 +10,7 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={toggle}
-      className="text-sm font-medium px-3 py-1.5 rounded-lg border border-gray-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+      className="w-full text-sm font-medium px-3 py-1.5 rounded-lg border border-gray-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
     >
       {i18n.language === "en" ? "বাংলা" : "English"}
     </button>

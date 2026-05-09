@@ -5,6 +5,7 @@ import { Button } from 'antd'
 import { ShopOutlined, PlusOutlined, LogoutOutlined } from '@ant-design/icons'
 import { selectCurrentUser, clearCredentials } from 'features/auth/authSlice'
 import { useLogoutMutation } from 'features/auth/authApi'
+import LanguageSwitcher from 'components/LanguageSwitcher'
 import { useGetRestaurantsQuery } from './restaurantsApi'
 import DashboardMetrics from './components/DashboardMetrics'
 import RestaurantList from './components/RestaurantList'
@@ -60,6 +61,9 @@ export default function DashboardPage() {
               </p>
               <p className="text-xs text-gray-400 truncate">{user?.email}</p>
             </div>
+          </div>
+          <div className="mb-2">
+            <LanguageSwitcher />
           </div>
           <button
             onClick={handleLogout}
