@@ -2,6 +2,7 @@ import { Modal, Button, Alert } from 'antd'
 import { Form, Field } from 'react-final-form'
 import { useTranslation } from 'react-i18next'
 import { useCreateRestaurantMutation, useUpdateRestaurantMutation } from '../restaurantsApi'
+import { inputClass } from 'utils/formStyles'
 
 function TextField({ name, label, placeholder }) {
   return (
@@ -13,11 +14,7 @@ function TextField({ name, label, placeholder }) {
             {...input}
             type="text"
             placeholder={placeholder}
-            className={`border rounded-lg px-3 py-2.5 text-sm outline-none transition-colors w-full ${
-              meta.touched && meta.error
-                ? 'border-red-400'
-                : 'border-gray-200 focus:border-emerald-500'
-            }`}
+            className={inputClass(meta.touched, meta.error)}
           />
           {meta.touched && meta.error && (
             <span className="text-xs text-red-500">{meta.error}</span>
