@@ -9,6 +9,7 @@ import AuthLeftPanel from "./components/AuthLeftPanel";
 import useAppNavigate from "hooks/useAppNavigate";
 import { ROUTES } from "app/routes";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { inputClass } from "utils/formStyles";
 
 export default function LoginPage() {
   const { t } = useTranslation();
@@ -78,12 +79,7 @@ export default function LoginPage() {
                         {...input}
                         type="email"
                         placeholder="ahmed@restaurant.com"
-                        className={`border rounded-lg px-3 py-2.5 text-sm outline-none transition-colors
-                        ${
-                          meta.touched && meta.error
-                            ? "border-red-400"
-                            : "border-gray-200 focus:border-emerald-500"
-                        }`}
+                        className={inputClass(meta.touched, meta.error)}
                       />
                       {meta.touched && meta.error && (
                         <span className="text-xs text-red-500">
@@ -104,12 +100,7 @@ export default function LoginPage() {
                         {...input}
                         type="password"
                         placeholder="••••••••"
-                        className={`border rounded-lg px-3 py-2.5 text-sm outline-none transition-colors
-                        ${
-                          meta.touched && meta.error
-                            ? "border-red-400"
-                            : "border-gray-200 focus:border-emerald-500"
-                        }`}
+                        className={inputClass(meta.touched, meta.error)}
                       />
                       {meta.touched && meta.error && (
                         <span className="text-xs text-red-500">
