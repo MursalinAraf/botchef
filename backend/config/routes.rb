@@ -20,6 +20,12 @@ Rails.application.routes.draw do
         resource :bot_config, only: [:show], controller: 'bot_configs'
         put 'bot_config/upsert', to: 'bot_configs#upsert'
       end
+
+      resources :invitations, only: [:create, :show], param: :token do
+        member do
+          post :accept
+        end
+      end
     end
   end
 end

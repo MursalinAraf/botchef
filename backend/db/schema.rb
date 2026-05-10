@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_04_26_172119) do
+ActiveRecord::Schema[7.2].define(version: 2026_05_11_000001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,19 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_26_172119) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_bot_configs_on_restaurant_id"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "token", null: false
+    t.datetime "accepted_at"
+    t.datetime "expires_at", null: false
+    t.bigint "invited_by_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_invitations_on_email"
+    t.index ["invited_by_id"], name: "index_invitations_on_invited_by_id"
+    t.index ["token"], name: "index_invitations_on_token", unique: true
   end
 
   create_table "jwt_denylists", force: :cascade do |t|
@@ -63,5 +76,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_26_172119) do
   end
 
   add_foreign_key "bot_configs", "restaurants"
+  add_foreign_key "invitations", "users", column: "invited_by_id"
   add_foreign_key "restaurants", "users"
 end
