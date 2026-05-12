@@ -30,6 +30,6 @@ const customBaseQuery = async (args, api, extraOptions) => {
 export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery: customBaseQuery,
-  tagTypes: ['Restaurant', 'BotConfig'],
+  tagTypes: ['Restaurant', 'BotConfig', 'Invitation'],
   endpoints: () => ({}),
 })

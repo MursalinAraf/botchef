@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { baseApi } from '@/app/baseApi'
-import HealthPage from '@/pages/HealthPage'
+import HealthPage from '@/features/health/HealthPage'
 
 // Helper: creates a fresh store for each test
 function makeStore() {
@@ -24,7 +24,7 @@ describe('HealthPage', () => {
   it('shows loading spinner while fetching', () => {
     useGetHealthQuery.mockReturnValue({ isLoading: true })
     render(<Provider store={makeStore()}><HealthPage /></Provider>)
-    expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument()
+    expect(document.querySelector('.ant-spin')).toBeInTheDocument()
   })
 
   it('shows error when backend is unreachable', () => {

@@ -54,6 +54,30 @@
       "required": "আবশ্যক"
     }
   },
+  "invite": {
+    "accept": {
+      "title": "আমন্ত্রণ গ্রহণ করুন",
+      "invited_by": "{{name}} আপনাকে আমন্ত্রণ জানিয়েছেন",
+      "expires": "মেয়াদ শেষ: {{date}}",
+      "email_label": "ইমেইল ঠিকানা",
+      "first_name": "প্রথম নাম",
+      "last_name": "শেষ নাম",
+      "password": "পাসওয়ার্ড",
+      "confirm_password": "পাসওয়ার্ড নিশ্চিত করুন",
+      "submit": "অ্যাকাউন্ট তৈরি করুন",
+      "not_found": "এই আমন্ত্রণ লিংকটি বৈধ নয়।",
+      "expired": "এই আমন্ত্রণের মেয়াদ শেষ হয়ে গেছে।",
+      "already_accepted": "এই আমন্ত্রণ ইতিমধ্যে গ্রহণ করা হয়েছে।"
+    },
+    "send": {
+      "modal_title": "অ্যাডমিন আমন্ত্রণ",
+      "email_label": "ইমেইল ঠিকানা",
+      "email_placeholder": "admin@example.com",
+      "invalid_email": "একটি বৈধ ইমেইল ঠিকানা হতে হবে",
+      "submit": "আমন্ত্রণ পাঠান",
+      "success": "{{email}} তে আমন্ত্রণ পাঠানো হয়েছে"
+    }
+  },
   "common": {
     "copyright": "© ২০২৬ BotChef",
     "cancel": "বাতিল",
@@ -67,7 +91,8 @@
     "header": {
       "title": "রেস্টুরেন্ট",
       "subtitle": "আপনার রেস্টুরেন্ট এবং বট কনফিগারেশন পরিচালনা করুন",
-      "new_restaurant": "নতুন রেস্টুরেন্ট"
+      "new_restaurant": "নতুন রেস্টুরেন্ট",
+      "invite_admin": "অ্যাডমিন আমন্ত্রণ"
     },
     "metrics": {
       "total": "মোট রেস্টুরেন্ট",
