@@ -23,6 +23,7 @@ end
 group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'letter_opener'
 end
 
 group :test do

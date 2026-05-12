@@ -17,7 +17,7 @@ describe('RestaurantList', () => {
     render(
       <RestaurantList restaurants={[]} isLoading={true} onEdit={vi.fn()} onConfigure={vi.fn()} onCreateNew={vi.fn()} />
     )
-    expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument()
+    expect(document.querySelector('.ant-spin')).toBeInTheDocument()
   })
 
   it('shows the empty state message when there are no restaurants', () => {

@@ -11,4 +11,9 @@ export const API_ROUTES = {
         botConfig: (restaurantId) => `/restaurants/${restaurantId}/bot_config`,
         upsertBotConfig: (restaurantId) => `/restaurants/${restaurantId}/bot_config/upsert`,
     },
+    invitations: {
+        create: '/invitations',
+        show: (token) => `/invitations/${token}`,
+        accept: (token) => `/invitations/${token}/accept`,
+    },
 }

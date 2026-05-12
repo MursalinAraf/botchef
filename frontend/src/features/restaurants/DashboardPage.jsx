@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'antd'
-import { ShopOutlined, PlusOutlined, LogoutOutlined } from '@ant-design/icons'
+import { ShopOutlined, PlusOutlined, LogoutOutlined, UserAddOutlined } from '@ant-design/icons'
 import { selectCurrentUser, clearCredentials } from 'features/auth/authSlice'
 import { useLogoutMutation } from 'features/auth/authApi'
 import LanguageSwitcher from 'components/LanguageSwitcher'
@@ -11,6 +11,7 @@ import DashboardMetrics from './components/DashboardMetrics'
 import RestaurantList from './components/RestaurantList'
 import CreateRestaurantModal from './components/CreateRestaurantModal'
 import BotConfigForm from './components/BotConfigForm'
+import InviteUserModal from 'features/invitations/components/InviteUserModal'
 
 export default function DashboardPage() {
   const { t } = useTranslation()
@@ -19,6 +20,7 @@ export default function DashboardPage() {
   const [logout] = useLogoutMutation()
   const [createModal, setCreateModal] = useState({ open: false, restaurant: null })
   const [botConfigDrawer, setBotConfigDrawer] = useState({ open: false, restaurant: null })
+  const [inviteModal, setInviteModal] = useState(false)
 
   const { data: restaurants = [], isLoading } = useGetRestaurantsQuery()
 
@@ -82,13 +84,23 @@ export default function DashboardPage() {
               <h1 className="text-xl font-semibold text-gray-900">{t('dashboard.header.title')}</h1>
               <p className="text-sm text-gray-400 mt-0.5">{t('dashboard.header.subtitle')}</p>
             </div>
-            <Button
-              type="primary"
-              icon={<PlusOutlined />}
-              onClick={() => setCreateModal({ open: true, restaurant: null })}
-            >
-              {t('dashboard.header.new_restaurant')}
-            </Button>
+            <div className="flex gap-2">
+              {user?.role === 'admin' && (
+                <Button
+                  icon={<UserAddOutlined />}
+                  onClick={() => setInviteModal(true)}
+                >
+                  {t('dashboard.header.invite_admin')}
+                </Button>
+              )}
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                onClick={() => setCreateModal({ open: true, restaurant: null })}
+              >
+                {t('dashboard.header.new_restaurant')}
+              </Button>
+            </div>
           </div>
 
           <DashboardMetrics restaurants={restaurants} />
@@ -113,6 +125,11 @@ export default function DashboardPage() {
         open={botConfigDrawer.open}
         restaurant={botConfigDrawer.restaurant}
         onClose={() => setBotConfigDrawer({ open: false, restaurant: null })}
+      />
+
+      <InviteUserModal
+        open={inviteModal}
+        onClose={() => setInviteModal(false)}
       />
     </div>
   )

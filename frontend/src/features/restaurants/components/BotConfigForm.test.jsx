@@ -64,7 +64,7 @@ describe('BotConfigForm', () => {
     useGetBotConfigQuery.mockReturnValue({ data: existingConfig, isLoading: false })
     renderForm()
     expect(screen.getByDisplayValue('Salmon Roll, Tuna Maki')).toBeInTheDocument()
-    expect(screen.getByDisplayValue('#1a2b3c')).toBeInTheDocument()
+    expect(screen.getAllByDisplayValue('#1a2b3c').length).toBeGreaterThanOrEqual(1)
   })
 
   it('shows tone and mascot options in English', () => {

@@ -25,11 +25,15 @@ vi.mock('./components/RestaurantList', () => ({
 
 vi.mock('./components/CreateRestaurantModal', () => ({ default: () => null }))
 vi.mock('./components/BotConfigForm', () => ({ default: () => null }))
+vi.mock('features/invitations/components/InviteUserModal', () => ({
+  default: ({ open }) => open ? <div data-testid="invite-modal" /> : null,
+}))
 
 import { useGetRestaurantsQuery } from './restaurantsApi'
 import { useLogoutMutation } from '@/features/auth/authApi'
 
-const testUser = { first_name: 'Ahmed', last_name: 'Rahman', email: 'ahmed@test.com' }
+const testUser  = { first_name: 'Ahmed', last_name: 'Rahman', email: 'ahmed@test.com', role: 'user' }
+const adminUser = { first_name: 'Araf',  last_name: 'Admin',  email: 'araf@admin.com',  role: 'admin' }
 
 function makeStore(preloadedState = {}) {
   return configureStore({
@@ -97,5 +101,24 @@ describe('DashboardPage', () => {
     renderPage()
     expect(screen.getByTestId('dashboard-metrics')).toBeInTheDocument()
     expect(screen.getByTestId('restaurant-list')).toBeInTheDocument()
+  })
+
+  it('does not show the Invite Admin button for a regular user', () => {
+    renderPage({ token: 'tok', user: testUser })
+    expect(screen.queryByRole('button', { name: /Invite Admin/i })).not.toBeInTheDocument()
+  })
+
+  it('shows the Invite Admin button for an admin user', () => {
+    renderPage({ token: 'tok', user: adminUser })
+    expect(screen.getByRole('button', { name: /Invite Admin/i })).toBeInTheDocument()
+  })
+
+  it('opens the InviteUserModal when Invite Admin is clicked', async () => {
+    const user = userEvent.setup()
+    renderPage({ token: 'tok', user: adminUser })
+
+    expect(screen.queryByTestId('invite-modal')).not.toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /Invite Admin/i }))
+    expect(screen.getByTestId('invite-modal')).toBeInTheDocument()
   })
 })
