@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family: sans-serif; color: #111; max-width: 560px; margin: 0 auto; padding: 32px 16px;">
+    <h2 style="color: #059669;">You've been invited to BotChef</h2>
+
+    <p>
+      <strong><%= @inviter.first_name %> <%= @inviter.last_name %></strong>
+      has invited you to join BotChef as an <strong>admin</strong>.
+    </p>
+
+    <p style="margin: 28px 0;">
+      <a href="<%= @accept_url %>"
+         style="background:#059669;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;">
+        Accept Invitation
+      </a>
+    </p>
+
+    <p style="color:#666;font-size:13px;">
+      This invitation expires on <strong><%= @expires_at %></strong>.
+      If you did not expect this email, you can safely ignore it.
+    </p>
+  </body>
+</html>

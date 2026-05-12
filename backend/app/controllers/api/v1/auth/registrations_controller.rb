@@ -4,23 +4,19 @@ module Api
       class RegistrationsController < Devise::RegistrationsController
         include Api::Renderable
 
-        def sign_in(_user, *_args); end
+        def create
+          user = UserCreationService.call(sign_up_params)
 
-        private
-
-        def respond_with(user, _opts = {})
-          if user.persisted?
+          if user.save
             token = JwtTokenService.call(user)
             response.headers['Authorization'] = "Bearer #{token}"
-
-            render_success({
-              token: token,
-              user: UserSerializer.new(user).call
-            }, :created)
+            render_success({ token: token, user: UserSerializer.call(user) }, :created)
           else
             render_errors(user.errors.full_messages)
           end
         end
+
+        private
 
         def sign_up_params
           params.require(:user).permit(

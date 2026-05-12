@@ -6,8 +6,8 @@ module Api
 
     private
 
-    def render_error(message, status: :unprocessable_entity)
-      render json: { error: message }, status: status
+    def require_admin!
+      render_error('Forbidden.', status: :forbidden) unless current_user&.admin?
     end
   end
 end
