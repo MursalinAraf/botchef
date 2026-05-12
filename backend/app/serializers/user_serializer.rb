@@ -1,4 +1,8 @@
 class UserSerializer
+  def self.call(resource)
+    new(resource).call
+  end
+
   def initialize(user)
     @user = user
   end

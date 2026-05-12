@@ -1,4 +1,8 @@
 class InvitationSerializer
+  def self.call(resource)
+    new(resource).call
+  end
+
   def initialize(invitation)
     @invitation = invitation
   end

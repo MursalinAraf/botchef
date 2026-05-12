@@ -1,4 +1,8 @@
 class BotConfigSerializer
+  def self.call(resource)
+    new(resource).call
+  end
+
   def initialize(bot_config)
     @bot_config = bot_config
   end

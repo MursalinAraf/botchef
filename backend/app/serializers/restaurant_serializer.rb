@@ -1,4 +1,8 @@
 class RestaurantSerializer
+  def self.call(resource)
+    new(resource).call
+  end
+
   def self.collection(restaurants)
     restaurants.map { |restaurant| new(restaurant).call }
   end
