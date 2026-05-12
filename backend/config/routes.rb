@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :restaurants, only: [:index, :show, :create, :update, :destroy] do
         resource :bot_config, only: [:show], controller: 'bot_configs'
         put 'bot_config/upsert', to: 'bot_configs#upsert'
+        resources :chats, only: [:create]
       end
 
       resources :invitations, only: [:create, :show], param: :token do
