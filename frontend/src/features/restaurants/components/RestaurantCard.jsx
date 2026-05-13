@@ -6,11 +6,12 @@ import {
   EnvironmentOutlined,
   PhoneOutlined,
   ClockCircleOutlined,
+  RobotOutlined,
 } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 import { useDeleteRestaurantMutation } from '../restaurantsApi'
 
-export default function RestaurantCard({ restaurant, onEdit, onConfigure }) {
+export default function RestaurantCard({ restaurant, onEdit, onConfigure, onPreview }) {
   const { t } = useTranslation()
   const [deleteRestaurant, { isLoading: isDeleting }] = useDeleteRestaurantMutation()
 
@@ -51,6 +52,14 @@ export default function RestaurantCard({ restaurant, onEdit, onConfigure }) {
         >
           {t('dashboard.card.configure_bot')}
         </Button>
+        {restaurant.bot_config && (
+          <Button
+            size="small"
+            icon={<RobotOutlined />}
+            onClick={() => onPreview(restaurant)}
+            title="Preview chatbot"
+          />
+        )}
         <Button size="small" icon={<EditOutlined />} onClick={() => onEdit(restaurant)} />
         <Popconfirm
           title={t('dashboard.card.delete_title')}

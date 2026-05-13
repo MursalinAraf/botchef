@@ -12,6 +12,7 @@ import RestaurantList from './components/RestaurantList'
 import CreateRestaurantModal from './components/CreateRestaurantModal'
 import BotConfigForm from './components/BotConfigForm'
 import InviteUserModal from 'features/invitations/components/InviteUserModal'
+import ChatWidget from 'features/chat/components/ChatWidget'
 
 export default function DashboardPage() {
   const { t } = useTranslation()
@@ -21,6 +22,7 @@ export default function DashboardPage() {
   const [createModal, setCreateModal] = useState({ open: false, restaurant: null })
   const [botConfigDrawer, setBotConfigDrawer] = useState({ open: false, restaurant: null })
   const [inviteModal, setInviteModal] = useState(false)
+  const [previewBot, setPreviewBot] = useState(null)
 
   const { data: restaurants = [], isLoading } = useGetRestaurantsQuery()
 
@@ -111,6 +113,7 @@ export default function DashboardPage() {
             onEdit={(r) => setCreateModal({ open: true, restaurant: r })}
             onConfigure={(r) => setBotConfigDrawer({ open: true, restaurant: r })}
             onCreateNew={() => setCreateModal({ open: true, restaurant: null })}
+            onPreview={(r) => setPreviewBot(r)}
           />
         </div>
       </main>
@@ -131,6 +134,13 @@ export default function DashboardPage() {
         open={inviteModal}
         onClose={() => setInviteModal(false)}
       />
+
+      {previewBot && (
+        <ChatWidget
+          restaurant={previewBot}
+          botConfig={previewBot.bot_config}
+        />
+      )}
     </div>
   )
 }
