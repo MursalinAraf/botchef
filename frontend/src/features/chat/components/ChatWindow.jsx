@@ -55,10 +55,10 @@ export default function ChatWindow({ restaurant, botConfig, brandColor, messages
         </div>
         <button
           onClick={onClose}
-          className="text-white/70 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors flex-shrink-0"
+          className="w-8 h-8 rounded-full flex items-center justify-center text-white bg-white/15 hover:bg-white/30 transition-colors flex-shrink-0 cursor-pointer border-0 outline-none"
           aria-label="Close chat"
         >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
             <path d="M18 6 6 18M6 6l12 12" />
           </svg>
         </button>
@@ -126,7 +126,7 @@ export default function ChatWindow({ restaurant, botConfig, brandColor, messages
               key={reply}
               onClick={() => !isLoading && onSend(reply)}
               disabled={isLoading}
-              className="flex-shrink-0 text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap disabled:opacity-40"
+              className="flex-shrink-0 text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap disabled:opacity-40 cursor-pointer"
             >
               {reply}
             </button>
@@ -137,8 +137,11 @@ export default function ChatWindow({ restaurant, botConfig, brandColor, messages
       {/* Input */}
       <div className="px-3 pb-3 flex-shrink-0">
         <div
-          className="flex items-center gap-2 bg-gray-50 rounded-xl border px-3 py-2 transition-colors"
-          style={{ borderColor: inputFocused ? brandColor : '#e5e7eb' }}
+          className="flex items-center gap-2 bg-gray-50 rounded-xl px-3 py-2 transition-colors"
+          style={{
+            border: `1.5px solid ${inputFocused ? brandColor : '#e5e7eb'}`,
+            outline: 'none',
+          }}
         >
           <input
             type="text"
@@ -149,12 +152,13 @@ export default function ChatWindow({ restaurant, botConfig, brandColor, messages
             onBlur={() => setInputFocused(false)}
             placeholder="Type a message..."
             disabled={isLoading}
-            className="flex-1 bg-transparent text-sm outline-none text-gray-800 placeholder-gray-400 disabled:opacity-50"
+            className="flex-1 bg-transparent text-sm outline-none border-none text-gray-800 placeholder-gray-400 disabled:opacity-50"
+            style={{ boxShadow: 'none' }}
           />
           <button
             onClick={handleSend}
             disabled={!input.trim() || isLoading}
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-white transition-all disabled:opacity-40 flex-shrink-0 hover:opacity-90 active:scale-95"
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-white transition-all disabled:opacity-40 flex-shrink-0 hover:opacity-90 active:scale-95 cursor-pointer border-0 outline-none"
             style={{ backgroundColor: brandColor }}
             aria-label="Send message"
           >

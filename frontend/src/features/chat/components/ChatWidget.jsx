@@ -44,7 +44,7 @@ export default function ChatWidget({ restaurant, botConfig }) {
       {/* Floating action button */}
       <button
         onClick={handleButtonClick}
-        className="relative w-14 h-14 rounded-full flex items-center justify-center text-white shadow-xl overflow-hidden transition-transform hover:scale-105 active:scale-95 focus:outline-none"
+        className="relative w-14 h-14 rounded-full flex items-center justify-center text-white shadow-xl overflow-hidden transition-transform hover:scale-105 active:scale-95 focus:outline-none cursor-pointer border-0"
         style={{ backgroundColor: brandColor }}
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
       >
