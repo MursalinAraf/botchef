@@ -3,7 +3,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 import RestaurantCard from './RestaurantCard'
 
-export default function RestaurantList({ restaurants, isLoading, onEdit, onConfigure, onCreateNew }) {
+export default function RestaurantList({ restaurants, isLoading, onEdit, onConfigure, onCreateNew, onPreview }) {
   const { t } = useTranslation()
 
   if (isLoading) {
@@ -41,6 +41,7 @@ export default function RestaurantList({ restaurants, isLoading, onEdit, onConfi
           restaurant={restaurant}
           onEdit={onEdit}
           onConfigure={onConfigure}
+          onPreview={onPreview}
         />
       ))}
     </div>

@@ -16,4 +16,7 @@ export const API_ROUTES = {
         show: (token) => `/invitations/${token}`,
         accept: (token) => `/invitations/${token}/accept`,
     },
+    chat: {
+        create: (restaurantId) => `/restaurants/${restaurantId}/chats`,
+    },
 }
