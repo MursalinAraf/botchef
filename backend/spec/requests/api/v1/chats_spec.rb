@@ -10,7 +10,7 @@ RSpec.describe 'Api::V1::Chats', type: :request do
   let(:ai_response)    { 'We have Margherita and BBQ Chicken!' }
 
   before do
-    allow(AnthropicService).to receive(:call).and_return(ai_response)
+    allow(GroqService).to receive(:call).and_return(ai_response)
   end
 
   describe 'POST /api/v1/restaurants/:restaurant_id/chats' do
@@ -30,15 +30,15 @@ RSpec.describe 'Api::V1::Chats', type: :request do
         expect(json['response']).to eq(ai_response)
       end
 
-      it 'calls AnthropicService with a system prompt and messages' do
-        expect(AnthropicService).to have_received(:call).with(
+      it 'calls GroqService with a system prompt and messages' do
+        expect(GroqService).to have_received(:call).with(
           system_prompt: a_kind_of(String),
           messages:      a_kind_of(Array)
         )
       end
 
       it 'includes restaurant name in the system prompt' do
-        expect(AnthropicService).to have_received(:call).with(
+        expect(GroqService).to have_received(:call).with(
           hash_including(system_prompt: include(restaurant.name))
         )
       end
@@ -103,7 +103,7 @@ RSpec.describe 'Api::V1::Chats', type: :request do
       end
 
       it 'truncates messages to the last 20' do
-        expect(AnthropicService).to have_received(:call).with(
+        expect(GroqService).to have_received(:call).with(
           hash_including(messages: have_attributes(length: 20))
         )
       end
