@@ -12,6 +12,7 @@ module Api
           return render_error('This restaurant has not configured its bot yet.', status: :unprocessable_entity)
         end
 
+        Rails.logger.debug "RAW PARAMS: #{params.inspect}"
         messages = sanitized_messages
         if messages.empty?
           return render_error('messages must be a non-empty array.', status: :unprocessable_entity)
@@ -22,7 +23,7 @@ module Api
           bot_config: @restaurant.bot_config
         )
 
-        response_text = AnthropicService.call(
+        response_text = GroqService.call(
           system_prompt: system_prompt,
           messages:      messages
         )
