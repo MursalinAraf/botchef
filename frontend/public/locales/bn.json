@@ -110,7 +110,12 @@
       "configure_bot": "বট কনফিগার করুন",
       "delete_title": "রেস্টুরেন্ট মুছবেন?",
       "delete_description": "এটি বট কনফিগারেশনও মুছে দেবে।",
-      "delete_confirm": "মুছুন"
+      "delete_confirm": "মুছুন",
+      "embed_title": "এম্বেড কোড",
+      "embed_copy": "কপি",
+      "embed_copied": "কপি হয়েছে!",
+      "embed_before_tag": "আপনার ওয়েবসাইটের",
+      "embed_after_tag": "ট্যাগের আগে এটি পেস্ট করুন"
     },
     "create_modal": {
       "title_create": "নতুন রেস্টুরেন্ট",

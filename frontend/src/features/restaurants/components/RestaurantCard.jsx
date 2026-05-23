@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Button, Tag, Popconfirm } from 'antd'
 import {
   EditOutlined,
@@ -7,13 +8,16 @@ import {
   PhoneOutlined,
   ClockCircleOutlined,
   RobotOutlined,
+  CodeOutlined,
 } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 import { useDeleteRestaurantMutation } from '../restaurantsApi'
+import EmbedCodeCard from './EmbedCodeCard'
 
 export default function RestaurantCard({ restaurant, onEdit, onConfigure, onPreview }) {
   const { t } = useTranslation()
   const [deleteRestaurant, { isLoading: isDeleting }] = useDeleteRestaurantMutation()
+  const [showEmbed, setShowEmbed] = useState(false)
 
   return (
     <div className="bg-white rounded-xl border border-gray-100 overflow-hidden flex flex-col">
@@ -60,6 +64,15 @@ export default function RestaurantCard({ restaurant, onEdit, onConfigure, onPrev
             title="Preview chatbot"
           />
         )}
+        {restaurant.bot_config && (
+          <Button
+            size="small"
+            icon={<CodeOutlined />}
+            onClick={() => setShowEmbed((prev) => !prev)}
+            title="Get embed code"
+            type={showEmbed ? 'primary' : 'default'}
+          />
+        )}
         <Button size="small" icon={<EditOutlined />} onClick={() => onEdit(restaurant)} />
         <Popconfirm
           title={t('dashboard.card.delete_title')}
@@ -72,6 +85,12 @@ export default function RestaurantCard({ restaurant, onEdit, onConfigure, onPrev
           <Button size="small" icon={<DeleteOutlined />} danger loading={isDeleting} />
         </Popconfirm>
       </div>
+
+      {restaurant.bot_config && showEmbed && (
+        <div className="px-5 pb-4">
+          <EmbedCodeCard restaurant={restaurant} />
+        </div>
+      )}
     </div>
   )
 }

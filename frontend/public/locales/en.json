@@ -110,7 +110,12 @@
       "configure_bot": "Configure Bot",
       "delete_title": "Delete restaurant?",
       "delete_description": "This will also delete its bot configuration.",
-      "delete_confirm": "Delete"
+      "delete_confirm": "Delete",
+      "embed_title": "Embed Code",
+      "embed_copy": "Copy",
+      "embed_copied": "Copied!",
+      "embed_before_tag": "Paste this before the",
+      "embed_after_tag": "tag on your website"
     },
     "create_modal": {
       "title_create": "New Restaurant",
