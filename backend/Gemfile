@@ -6,6 +6,7 @@ gem 'rails', '~> 7.2.0'
 gem 'pg', '~> 1.5'
 gem 'puma', '~> 6.4'
 gem 'rack-cors'
+gem 'rack-attack'
 gem 'dotenv-rails'
 gem 'bootsnap', require: false
 

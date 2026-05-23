@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Auth::Registrations', type: :request do
@@ -51,6 +53,10 @@ RSpec.describe 'Api::V1::Auth::Registrations', type: :request do
 
       it 'returns a JWT token in the header' do
         expect(response.headers['Authorization']).to be_present
+      end
+
+      it 'returns a refresh token in the body' do
+        expect(json['refresh_token']).to be_present
       end
     end
 

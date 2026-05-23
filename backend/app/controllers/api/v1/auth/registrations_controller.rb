@@ -8,9 +8,10 @@ module Api
           user = UserCreationService.call(sign_up_params)
 
           if user.save
-            token = JwtTokenService.call(user)
+            refresh_token = user.generate_refresh_token!
+            token         = JwtTokenService.call(user)
             response.headers['Authorization'] = "Bearer #{token}"
-            render_success({ token: token, user: UserSerializer.call(user) }, :created)
+            render_success({ token: token, refresh_token: refresh_token, user: UserSerializer.call(user) }, :created)
           else
             render_errors(user.errors.full_messages)
           end

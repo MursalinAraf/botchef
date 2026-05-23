@@ -3,7 +3,8 @@ module Api
     class ChatsController < Api::ApplicationController
       include Api::Renderable
 
-      MAX_HISTORY = 20
+      MAX_HISTORY        = 20
+      MAX_MESSAGE_LENGTH = 1000
 
       before_action :set_restaurant
 
@@ -12,21 +13,11 @@ module Api
           return render_error('This restaurant has not configured its bot yet.', status: :unprocessable_entity)
         end
 
-        Rails.logger.debug "RAW PARAMS: #{params.inspect}"
         messages = sanitized_messages
-        if messages.empty?
-          return render_error('messages must be a non-empty array.', status: :unprocessable_entity)
-        end
+        return render_error('messages must be a non-empty array.', status: :unprocessable_entity) if messages.empty?
 
-        system_prompt = SystemPromptBuilder.call(
-          restaurant: @restaurant,
-          bot_config: @restaurant.bot_config
-        )
-
-        response_text = GroqService.call(
-          system_prompt: system_prompt,
-          messages:      messages
-        )
+        system_prompt = SystemPromptBuilder.call(restaurant: @restaurant, bot_config: @restaurant.bot_config)
+        response_text = GroqService.call(system_prompt: system_prompt, messages: messages)
 
         render_success({ response: response_text })
       rescue StandardError => e
@@ -49,6 +40,7 @@ module Api
           role    = msg[:role].to_s
           content = msg[:content].to_s.strip
           next unless %w[user assistant].include?(role) && content.present?
+          next if content.length > MAX_MESSAGE_LENGTH
 
           { role: role, content: content }
         end

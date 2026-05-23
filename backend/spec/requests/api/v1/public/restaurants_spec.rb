@@ -6,8 +6,8 @@ RSpec.describe 'Api::V1::Public::Restaurants', type: :request do
   describe 'GET /api/v1/public/restaurants/:id' do
     let(:restaurant) { create(:restaurant) }
 
-    context 'without any auth token' do
-      before { get "/api/v1/public/restaurants/#{restaurant.id}" }
+    context 'using the restaurant public_token' do
+      before { get "/api/v1/public/restaurants/#{restaurant.public_token}" }
 
       it 'returns http 200' do
         expect(response).to have_http_status(:ok)
@@ -34,7 +34,7 @@ RSpec.describe 'Api::V1::Public::Restaurants', type: :request do
           'menu' => bot_config.menu, 'delivery_info' => bot_config.delivery_info, 'deals' => bot_config.deals }
       end
 
-      before { get "/api/v1/public/restaurants/#{restaurant.id}" }
+      before { get "/api/v1/public/restaurants/#{restaurant.public_token}" }
 
       it 'returns bot_config with widget fields' do
         expect(json['bot_config']).to include(expected_bot_config)
@@ -45,8 +45,8 @@ RSpec.describe 'Api::V1::Public::Restaurants', type: :request do
       end
     end
 
-    context 'when the restaurant does not exist' do
-      before { get '/api/v1/public/restaurants/0' }
+    context 'with an unknown token' do
+      before { get '/api/v1/public/restaurants/no-such-token' }
 
       it 'returns http 404' do
         expect(response).to have_http_status(:not_found)

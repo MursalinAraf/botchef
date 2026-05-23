@@ -9,7 +9,7 @@ export default function EmbedCodeCard({ restaurant }) {
 
   const origin = window.location.origin
   const embedCode =
-    `<script src="${origin}/widget.js" data-bot-id="${restaurant.id}" data-api-url="${origin}"></script>`
+    `<script src="${origin}/widget.js" data-bot-token="${restaurant.public_token}" data-api-url="${origin}"></script>`
 
   const handleCopy = () => {
     navigator.clipboard.writeText(embedCode).then(() => {

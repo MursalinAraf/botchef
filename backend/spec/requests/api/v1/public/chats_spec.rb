@@ -13,7 +13,7 @@ RSpec.describe 'Api::V1::Public::Chats', type: :request do
     context 'without any auth token' do
       before do
         create(:bot_config, restaurant: restaurant)
-        post "/api/v1/public/restaurants/#{restaurant.id}/chats",
+        post "/api/v1/public/restaurants/#{restaurant.public_token}/chats",
              params: { messages: valid_messages }
       end
 
@@ -35,7 +35,7 @@ RSpec.describe 'Api::V1::Public::Chats', type: :request do
 
     context 'when bot_config is missing' do
       before do
-        post "/api/v1/public/restaurants/#{restaurant.id}/chats",
+        post "/api/v1/public/restaurants/#{restaurant.public_token}/chats",
              params: { messages: valid_messages }
       end
 
@@ -51,7 +51,7 @@ RSpec.describe 'Api::V1::Public::Chats', type: :request do
     context 'when messages is an empty array' do
       before do
         create(:bot_config, restaurant: restaurant)
-        post "/api/v1/public/restaurants/#{restaurant.id}/chats",
+        post "/api/v1/public/restaurants/#{restaurant.public_token}/chats",
              params: { messages: [] }
       end
 
@@ -63,7 +63,7 @@ RSpec.describe 'Api::V1::Public::Chats', type: :request do
     context 'when messages param is missing' do
       before do
         create(:bot_config, restaurant: restaurant)
-        post "/api/v1/public/restaurants/#{restaurant.id}/chats", params: {}
+        post "/api/v1/public/restaurants/#{restaurant.public_token}/chats", params: {}
       end
 
       it 'returns http 422' do
@@ -73,7 +73,7 @@ RSpec.describe 'Api::V1::Public::Chats', type: :request do
 
     context 'when the restaurant does not exist' do
       before do
-        post '/api/v1/public/restaurants/0/chats',
+        post '/api/v1/public/restaurants/no-such-token/chats',
              params: { messages: valid_messages }
       end
 
@@ -89,7 +89,7 @@ RSpec.describe 'Api::V1::Public::Chats', type: :request do
 
       before do
         create(:bot_config, restaurant: restaurant)
-        post "/api/v1/public/restaurants/#{restaurant.id}/chats",
+        post "/api/v1/public/restaurants/#{restaurant.public_token}/chats",
              params: { messages: long_history }
       end
 
