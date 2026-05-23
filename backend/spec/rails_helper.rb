@@ -13,6 +13,7 @@ end
 
 RSpec.configure do |config|
   config.fixture_paths = ["#{::Rails.root}/spec/fixtures"]
+  config.before(:suite) { Rack::Attack.enabled = false }
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

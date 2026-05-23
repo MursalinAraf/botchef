@@ -188,15 +188,15 @@
   // --- Script attributes ---
   function findScript() {
     if (document.currentScript) return document.currentScript;
-    var all = document.querySelectorAll('script[data-bot-id]');
+    var all = document.querySelectorAll('script[data-bot-token]');
     return all[all.length - 1] || null;
   }
 
   var script = findScript();
   if (!script) return;
-  var botId = script.getAttribute('data-bot-id');
+  var botToken = script.getAttribute('data-bot-token');
   var apiUrl = (script.getAttribute('data-api-url') || window.location.origin).replace(/\/$/, '');
-  if (!botId) return;
+  if (!botToken) return;
 
   // --- State ---
   var isOpen = false;
@@ -242,7 +242,7 @@
 
   // --- API ---
   function apiFetch() {
-    return fetch(apiUrl + '/api/v1/public/restaurants/' + botId, {
+    return fetch(apiUrl + '/api/v1/public/restaurants/' + botToken, {
       headers: { Accept: 'application/json' },
     }).then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -253,7 +253,7 @@
   }
 
   function apiChat(history) {
-    return fetch(apiUrl + '/api/v1/public/restaurants/' + botId + '/chats', {
+    return fetch(apiUrl + '/api/v1/public/restaurants/' + botToken + '/chats', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ messages: history }),

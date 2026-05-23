@@ -8,10 +8,12 @@ module Api
 
         def respond_with(user, _opts = {})
           if user.persisted?
-            token = request.env['warden-jwt_auth.token']
+            token         = request.env['warden-jwt_auth.token']
+            refresh_token = user.generate_refresh_token!
             render_success({
-            token: token,
-            user: UserSerializer.new(user).call
+              token:         token,
+              refresh_token: refresh_token,
+              user:          UserSerializer.new(user).call
             })
           else
             render_error('Invalid email or password.', status: :unauthorized)
@@ -20,6 +22,7 @@ module Api
 
         def respond_to_on_destroy(*_args)
           if request.headers['Authorization'].present?
+            current_user&.invalidate_refresh_token!
             render_success({})
           else
             render_error('No active session found.', status: :unauthorized)

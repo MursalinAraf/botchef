@@ -9,7 +9,7 @@ module Api
         skip_before_action :authenticate_user!
 
         def show
-          restaurant = Restaurant.find(params[:id])
+          restaurant = Restaurant.find_by!(public_token: params[:id])
           render_success(serialize(restaurant))
         rescue ActiveRecord::RecordNotFound
           render_error('Restaurant not found.', status: :not_found)

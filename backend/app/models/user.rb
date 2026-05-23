@@ -16,6 +16,16 @@ class User < ApplicationRecord
 
   before_save :downcase_email
 
+  def generate_refresh_token!
+    self.refresh_token = SecureRandom.urlsafe_base64(32)
+    save!(validate: false)
+    refresh_token
+  end
+
+  def invalidate_refresh_token!
+    update_column(:refresh_token, nil)
+  end
+
   private
 
   def downcase_email

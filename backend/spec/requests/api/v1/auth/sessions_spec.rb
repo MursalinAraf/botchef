@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Auth::Sessions', type: :request do
@@ -30,6 +32,10 @@ RSpec.describe 'Api::V1::Auth::Sessions', type: :request do
 
       it 'returns a JWT token in the header' do
         expect(response.headers['Authorization']).to be_present
+      end
+
+      it 'returns a refresh token in the body' do
+        expect(json['refresh_token']).to be_present
       end
     end
 
@@ -68,6 +74,10 @@ RSpec.describe 'Api::V1::Auth::Sessions', type: :request do
       it 'returns http 200' do
         expect(response).to have_http_status(:ok)
       end
+
+      it 'invalidates the refresh token' do
+        expect(user.reload.refresh_token).to be_nil
+      end
     end
 
     context 'without token' do
@@ -77,11 +87,5 @@ RSpec.describe 'Api::V1::Auth::Sessions', type: :request do
         expect(response).to have_http_status(:unauthorized)
       end
     end
-  end
-
-  private
-
-  def json
-    JSON.parse(response.body)
   end
 end

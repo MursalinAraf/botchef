@@ -6,7 +6,8 @@ module Api
       class ChatsController < Api::ApplicationController
         include Api::Renderable
 
-        MAX_HISTORY = 20
+        MAX_HISTORY        = 20
+        MAX_MESSAGE_LENGTH = 1000
 
         skip_before_action :authenticate_user!
         before_action :set_restaurant
@@ -30,7 +31,7 @@ module Api
         private
 
         def set_restaurant
-          @restaurant = Restaurant.find(params[:restaurant_id])
+          @restaurant = Restaurant.find_by!(public_token: params[:restaurant_id])
         rescue ActiveRecord::RecordNotFound
           render_error('Restaurant not found.', status: :not_found)
         end
@@ -43,6 +44,7 @@ module Api
             role    = msg[:role].to_s
             content = msg[:content].to_s.strip
             next unless %w[user assistant].include?(role) && content.present?
+            next if content.length > MAX_MESSAGE_LENGTH
 
             { role: role, content: content }
           end
