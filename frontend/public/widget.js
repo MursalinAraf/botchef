@@ -242,7 +242,7 @@
 
   // --- API ---
   function apiFetch() {
-    return fetch(apiUrl + '/api/v1/restaurants/' + botId, {
+    return fetch(apiUrl + '/api/v1/public/restaurants/' + botId, {
       headers: { Accept: 'application/json' },
     }).then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -253,7 +253,7 @@
   }
 
   function apiChat(history) {
-    return fetch(apiUrl + '/api/v1/restaurants/' + botId + '/chats', {
+    return fetch(apiUrl + '/api/v1/public/restaurants/' + botId + '/chats', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ messages: history }),
